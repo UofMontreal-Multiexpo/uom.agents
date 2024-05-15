@@ -1,0 +1,26 @@
+Package: uom.agents
+Type: Package
+Title: Chemical Agents for Occupational Exposure Databases
+Version: 0.0.0.9000-0
+Date: 2024-05-14
+Authors@R: c(
+    person("Gauthier", "Magnin", role = c("aut", "ctr")),
+    person("Jérôme", "Lavoué", email = "jerome.lavoue@umontreal.ca", role = "cre"),
+    person("CHUM - Centre Hospitalier de l'Université de Montréal", role = c("cph", "fnd")),
+    person("IRSST - Institut de Recherche Robert-Sauvé en Santé et en Sécurité du Travail", role = c("cph", "fnd", "dtc")),
+    person("INRS - Institut National de Recherche et de Sécurité pour la prévention des accidents du travail et des maladies professionnelles", role = c("dtc"))
+  )
+Description: Data about chemical agents relating to occupational exposure
+    databases: classifications, exposure limit values, toxicological classes...
+    Raw data and CSV format of final datasets are available in this
+    \href{https://www.dropbox.com/scl/fo/0k1d84kf005qc6n7xgimh/AEbgRasCpHqdsSXvRCzV9e4?rlkey=8wl7i5yu8zfqgbrpmuybt7h5j&st=8x3td6md&dl=0}{Dropbox folder}.
+License: Undefined
+URL: https://github.com/UofMontreal-Multiexpo/uom.agents
+BugReports: https://github.com/UofMontreal-Multiexpo/uom.agents/issues
+Depends: R (>= 3.5.0)
+Encoding: UTF-8
+LazyData: true
+VignetteBuilder: knitr
+RoxygenNote: 7.3.1
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
