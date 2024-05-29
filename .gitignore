@@ -7,3 +7,17 @@
 # Folders relating to package development and building
 /doc/
 /Meta/
+
+# Files and folders relating to raw data, CSV final datasets and testing
+# resources
+/data-raw/create_agent_data/*
+/data/csv/*
+/tests/res/*
+
+# Temporary files and folders
+/tmp/
+
+# Exceptions to keep folder structure (empty folders)
+!/data-raw/create_agent_data/.gitkeep
+!/data/csv/.gitkeep
+!/tests/res/.gitkeep
