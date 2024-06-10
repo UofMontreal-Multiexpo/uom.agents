@@ -61,6 +61,11 @@ These files can be accessed using `help(package = "uom.agents")` then clicking o
 
 
 
+## Contact
+
+For any inquiries, you can send an email to Jérôme Lavoué at <jerome.lavoue@umontreal.ca>.
+
+
 ## Authors
 
 * [Gauthier Magnin](https://fr.linkedin.com/in/gauthier-magnin) - R programmer analyst.
