@@ -6,7 +6,7 @@
 \alias{uom.agents-package}
 \title{uom.agents: Chemical Agents for Occupational Exposure Databases}
 \description{
-Data about chemical agents relating to occupational exposure databases: classifications, exposure limit values, toxicological classes... Raw data and CSV format of final datasets are available in this \href{https://www.dropbox.com/scl/fo/0k1d84kf005qc6n7xgimh/AEbgRasCpHqdsSXvRCzV9e4?rlkey=8wl7i5yu8zfqgbrpmuybt7h5j&st=8x3td6md&dl=0}{Dropbox folder}.
+Data about chemical agents relating to occupational exposure databases: classifications, exposure limit values, toxicological classes and other properties. Raw data and CSV format of final datasets are available in this \href{https://www.dropbox.com/scl/fo/0k1d84kf005qc6n7xgimh/AEbgRasCpHqdsSXvRCzV9e4?rlkey=8wl7i5yu8zfqgbrpmuybt7h5j&st=8x3td6md&dl=0}{Dropbox folder}.
 }
 \details{
 For an organized list of datasets and functions, use
