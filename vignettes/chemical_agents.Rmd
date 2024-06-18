@@ -1,0 +1,392 @@
+---
+title: "Chemical agents"
+author: "Gauthier Magnin"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    includes:
+      in_header:
+        - ./chemical_agents/columns.tex
+        - ./chemical_agents/landscape.tex
+        - ./chemical_agents/fontsize.tex
+        - ./chemical_agents/captions.tex
+        # columns.tex   allows to divide part of a page into several columns.
+        # landscape.tex allows to create pages in landscape mode.
+        # fontsize.tex  allows to define specific fontsize.
+        # captions.tex  allows to configure captions.
+linkcolor: red
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      ft.tabcolsep = 4)
+
+flextable::set_flextable_defaults(theme_fun = "theme_vanilla",
+                                  fonts_ignore = TRUE)
+```
+
+```{r loading, include=FALSE}
+# Loading packages
+library(flextable)
+library(kableExtra)
+library(magrittr)
+library(uom.agents)
+
+# Loading data
+oel_units = read.csv("./chemical_agents/oel_units.csv",
+                     encoding = "UTF-8")
+field_description = read.csv("./chemical_agents/field_description.csv",
+                             encoding = "UTF-8")
+```
+
+```{r functions, include=FALSE}
+
+#' Substrings using a regular expression
+#' 
+#' Extract substrings in a character vector using a regular expression.
+#' 
+#' @details
+#' If the result is simplified to a vector (i.e., if `simplify` is `TRUE` and
+#'  no elements from `x` have more than one match) and any elements from `x`
+#'  have no matches, the result will not have the same length as `x`.
+#' 
+#' @param x Character vector.
+#' @param regex Regular expression to use.
+#' @param match_only `TRUE` or `FALSE` whether to remove from the result
+#'  elements of `x` having no matches (i.e., for which the result would be
+#'  `character(0)`).
+#' @param simplify `TRUE` or `FALSE` whether to simplify the result to a vector
+#'  or to keep it as a list.
+#'  Ignored if any element from `x` has more than one match.
+#' @return List of character vectors, or character vector, containing the
+#'  matched substrings.
+#' 
+substr_using_regex = function(x, regex,
+                              match_only = FALSE, simplify = FALSE) {
+  
+  # Extract all matches
+  y = regmatches(x, gregexpr(regex, x))
+  
+  # Remove elements with no matches
+  if (match_only) y = y[lengths(y) != 0]
+  
+  # Unlist
+  if (simplify & !any(lengths(y) > 1)) y = unlist(y)
+  
+  return(y)
+}
+
+#' Embed SVG images in knitr documents
+#' 
+#' Turn an SVG image into a PDF file and import this new file as an external
+#'  image using [`knitr::include_graphics`].
+#' 
+#' @param file Filepath of the SVG image to include, without extension.
+#' @param ... Further arguments to [`knitr::include_graphics`].
+#' @return Value from `file` marked with special internal S3 classes.
+#' 
+include_svg <- function(file, ...) {
+  output = xfun::with_ext(file, "pdf")
+  rsvg::rsvg_pdf(xfun::with_ext(file, "svg"), file = output)
+  return(knitr::include_graphics(output, ...))
+}
+
+#' Extraction of \out{n<sup>th</sup>} values from a list
+#' 
+#' Extract the \out{n<sup>th</sup>} values of the vectors of a list.
+#' 
+#' @param x List of vectors whose `n`\out{<sup>th</sup>} values are to be
+#'  extracted.
+#' @param n Position of the elements to extract in each vector of `x`.
+#' @return Vector of the values at positions `n`.
+#' 
+nth_values = function(x, n) {
+  return(sapply(x, "[[", n))
+}
+```
+
+
+
+These are data about chemical agents relating to occupational exposure databases: classifications, exposure limit values, toxicological classes and other properties.
+The main classification of chemical agents was created by the University of Montreal. Toxicological classes and their associations with substances were provided by the IRSST (the Quebec's Occupational Health and Safety Research Institute) and the INRS (the French National Research and Safety Institute for the Prevention of Occupational Accidents and Diseases).
+
+
+<!-- Empty line to lower the following image -->
+\ 
+<!-- Centering the image vertically within the rest of the page might give a better result -->
+
+```{r schema, fig.cap="Relational schema of chemical agent data.", out.width="100%"}
+# The caption does not appear if option out.width is not given
+include_svg("chemical_agents/agents_relational_schema")
+```
+
+\newpage
+
+\blandscape
+```{r main-table-preparation}
+## Prepare hyperlinks
+
+# Regular expressions defining hyperlinks
+regex_text = "\\[.*?\\]"
+regex_link = "\\(.*?\\)"
+regex = paste0(regex_text, regex_link)
+
+# Find substrings to interpret as hyperlinks in the field description table
+has_link = which(grepl(regex, field_description$Comments))
+
+surroundings = strsplit(field_description$Comments[has_link], regex)
+
+text = substr_using_regex(field_description$Comments, regex_text, TRUE)
+text = lapply(text, function(x) substr(x, 2, nchar(x) - 1))
+
+links = substr_using_regex(field_description$Comments, regex_link, TRUE)
+links = lapply(links, function(x) substr(x, 2, nchar(x) - 1))
+
+# Change the lists of text, links and surroundings so they have the same lengths
+max_links = max(lengths(links))
+
+for (i in seq_along(text)) {
+  text[[i]] = c(text[[i]], rep("", max_links - length(text[[i]])))
+  links[[i]] = c(links[[i]], rep("", max_links - length(links[[i]])))
+  
+  surroundings[[i]] = c(surroundings[[i]], rep("", max_links - length(surroundings[[i]]) + 1))
+}
+
+
+## Prepare cells to merge
+
+## Symbol "+" is used in 'field_description.csv' to specify to merge a cell with
+## the one above it.
+
+# Check the content of each cell
+is_symbol = sapply(field_description, function(col) grepl("^\\+$", col))
+
+# Search for rows to merge in each column
+to_span = do.call(rbind, lapply(seq_len(ncol(is_symbol)), function(i) {
+  
+  col = is_symbol[, i]
+  
+  which_not_symbol = which(!col)
+  
+  to_span = matrix(c(rep(i, length(which_not_symbol)),
+                     which_not_symbol),
+                   byrow = FALSE, ncol = 2)
+  
+  which_not_symbol = c(which_not_symbol, length(col) + 1)
+  
+  to_span = cbind(to_span, diff(which_not_symbol))
+  
+  colnames(to_span) = c("col", "row", "nb_rows")
+  return(to_span)
+}))
+to_span = to_span[to_span[, "nb_rows"] != 1, ]
+
+
+## Prepare line breaks
+
+## Line breaks do not work if they are in the data frame used to create the
+## flextable. They have to be made afterwards.
+## 
+## Therefore, symbol "; " is used in 'field_description.csv' instead of "\n" to
+## specify line breaks.
+## 
+## The CSV file of the table contains one empty row with a line break in a cell.
+## This is to force the page break and prevent the following merged cells from
+## being split between two pages. (It cannot be done with flextable::paginate.)
+
+# Check the content of each cell
+line_break_symbol = "; "
+contains_symbol = sapply(field_description,
+                         function(col) grepl(line_break_symbol, col, fixed = TRUE))
+which_symbol = which(contains_symbol, arr.ind = TRUE)
+```
+
+```{r main-table-display}
+# Create and format the table
+flex_description = flextable(field_description) %>%
+  set_caption(caption = "Description of chemical agent data tables.") %>%
+  
+  # Use width() because set_table_properties(layout = "autofit") results in overflow
+  width(1, unit = "cm", width = 3.43) %>%
+  width(2, unit = "cm", width = 3.45) %>%
+  width(3, unit = "cm", width = 7.16) %>%
+  width(4, unit = "cm", width = 2.15) %>%
+  width(5, unit = "cm", width = 5.24) %>%
+  
+  # Interpret hyperlinks
+  compose(i = has_link, j = 5,
+          value = as_paragraph(
+            nth_values(surroundings, 1),
+            hyperlink_text(x   = nth_values(text, 1),
+                           url = nth_values(links, 1)),
+            nth_values(surroundings, 2),
+            hyperlink_text(x   = nth_values(text, 2),
+                           url = nth_values(links, 2)),
+            nth_values(surroundings, 3)
+          ))
+
+# Add line breaks
+for (i in seq_len(nrow(which_symbol))) {
+  flex_description = compose(
+    flex_description,
+    i = which_symbol[i, "row"],
+    j = which_symbol[i, "col"],
+    as_paragraph(gsub(line_break_symbol, "\n", fixed = TRUE,
+                      field_description[which_symbol[i, "row"], which_symbol[i, "col"]]))
+  )
+}
+
+# Merge cells
+for (i in seq_len(nrow(to_span))) {
+  flex_description = merge_at(
+    flex_description,
+    i = seq(to_span[i, "row"],
+            to_span[i, "row"] + to_span[i, "nb_rows"] - 1),
+    j = to_span[i, "col"]
+  )
+}
+
+# Display the table
+flex_description %>%
+  valign(j = 1, valign = "top")
+```
+\elandscape
+
+<!-- Previous commands (\blandscape and \elandscape) rotate the content without
+     rotating the page if no call to kableExtra::landscape is done anywhere.
+```{r}
+landscape(kable(data.frame(A = 1:5, B = 1:5), "latex"))
+```
+-->
+
+
+
+# Appendices
+
+## Appendix A: Reference table of the main chemical agents {#appendix-a}
+
+```{r table-agents}
+flextable(data.frame(ID   = rownames(agents),
+                     Name = agents[, "name"])) %>%
+  set_caption(caption = "Identifiers and names of the main chemical agents.") %>%
+  set_table_properties(layout = "autofit")
+```
+
+
+## Appendix B: Chemical families reference table {#appendix-b}
+
+```{r table-families}
+flextable(data.frame(Family = levels(agents$family))) %>%
+  set_caption(caption = "Chemical families of the agents.") %>%
+  set_table_properties(layout = "autofit")
+```
+
+
+## Appendix C: Size fraction reference table {#appendix-c}
+
+```{r table-fractions}
+flextable(data.frame(Fraction = levels(agents$size_fraction))) %>%
+  set_caption(caption = "Particle size fractions.") %>%
+  set_table_properties(layout = "autofit")
+```
+
+
+## Appendix D: Reference tables relating to OELs {#appendix-d}
+
+:::::: {.cols data-latex=""}
+::: {.col data-latex="{0.46\textwidth}"}
+```{r table-oel-sources}
+flextable(data.frame(Source = sort(unique(agents$oel_source)))) %>%
+  set_caption(caption = "Sources of the occupational exposure limit values.") %>%
+  set_table_properties(layout = "autofit")
+```
+:::
+
+::: {.col data-latex="{0.08\textwidth}"}
+<!-- Empty div (containing a white space) used as column separator -->
+\ 
+:::
+
+::: {.col data-latex="{0.46\textwidth}"}
+```{r table-oel-units}
+flextable(data.frame(ID   = oel_units$id,
+                     Name = oel_units$name)) %>%
+  set_caption(caption = "Identifiers and names of the occupational exposure limit units.") %>%
+  set_table_properties(layout = "autofit")
+```
+:::
+::::::
+
+
+## Appendix E: Reference table of substances from MiXie Quebec {#appendix-e}
+
+```{r table-mixie-qc}
+flextable(data.frame(Name = sort(unique(mixie_qc[, "substance"])))) %>%
+  set_caption(caption = "Names of substances from MiXie Quebec.") %>%
+  set_table_properties(layout = "autofit")
+```
+
+
+## Appendix F: Reference table of substances from MiXie France {#appendix-f}
+
+```{r table-mixie-fr}
+flextable(data.frame(Name = sort(unique(mixie_fr[, "substance"])))) %>%
+  set_caption(caption = "Names of substances from MiXie France.") %>%
+  
+  # Use width() because set_table_properties(layout = "autofit") results in overflow
+  width(1, unit = "cm", width = 16.23)
+```
+
+
+\newpage
+
+## Appendix G: Reference table of the toxicological classes {#appendix-g}
+
+```{r table-toxicity}
+flextable(data.frame("MiXie-QC"    = rownames(toxicological_classes),
+                     "MiXie-FR"    = toxicological_classes[, "mixie_fr_id"],
+                     Name          = toxicological_classes[, "name"],
+                     "French name" = toxicological_classes[, "name_fr"],
+                     
+                     check.names = FALSE)) %>%
+  set_caption(caption = "Identifiers of the toxicological classes from MiXie Quebec and MiXie France, and English and French names.") %>%
+  
+  # Use width() because set_table_properties(layout = "autofit") results in overflow
+  width(1, unit = "cm", width = 1.98) %>%
+  width(2, unit = "cm", width = 1.96) %>%
+  width(3, unit = "cm", width = 5.76) %>%
+  width(4, unit = "cm", width = 5.7)
+```
+
+
+## Appendix H: Database reference table {#appendix-h}
+
+```{r table-databases}
+# Create the table
+flex_databases = flextable(
+  data.frame(ID           = rownames(databases),
+             Name         = databases[, "name"],
+             Territory    = databases[, "territory"],
+             Organization = databases[, "organization"])
+  ) %>%
+  set_caption(caption = "Identifiers and names of the occupational exposure databases, related territories and organizations hosting them.")
+
+# Find best column widths (needed when using long footnotes)
+flex_widths = dim_pretty(flex_databases, unit = "cm")$widths
+
+# Add footnote and display the table
+flex_databases %>%
+  
+  flextable::footnote(
+    i = 4, j = 1,
+    ref_symbols = "*",
+    value = as_paragraph("The USIS database combines the IMIS (Integrated Management Information System) and the OIS (OSHA Information System) databases.")
+  ) %>%
+  
+  width(1, unit = "cm", flex_widths[1]) %>%
+  width(2, unit = "cm", flex_widths[2]) %>%
+  width(3, unit = "cm", flex_widths[3]) %>%
+  width(4, unit = "cm", flex_widths[4])
+```

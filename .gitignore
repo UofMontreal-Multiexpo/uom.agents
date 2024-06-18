@@ -14,6 +14,9 @@
 /data/csv/*
 /tests/res/*
 
+# Intermediate files to create documentation
+/vignettes/chemical_agents/agents_relational_schema.pdf
+
 # Temporary files and folders
 /tmp/
 
