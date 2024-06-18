@@ -26,6 +26,11 @@
 ## 
 ## Other output files, resource files for tests:
 ##  - tests/res/agent_data.RDS
+## 
+## Temporary files:
+##  - tmp/agent_data_main.csv
+##  - tmp/agent_data_mixie.csv
+##  - tmp/agent_data_oel.csv
 
 
 
