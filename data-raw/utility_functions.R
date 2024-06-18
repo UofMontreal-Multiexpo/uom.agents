@@ -1,6 +1,69 @@
 ## Utility functions for data preparation.
 
 
+#' Capitalize a character string
+#' 
+#' Change the first letter of a string to uppercase.
+#' 
+#' @param x Character string to be capitalized.
+#' @return The character string corresponding to the argument `x`, starting with
+#'  a capital letter.
+#' 
+#' @author Gauthier Magnin
+#' @template function_not_exported
+#' 
+cap = function(x) {
+  y = paste0(toupper(substring(x, 1, 1)), substring(x, 2))
+  y[is.na(x)] = NA_character_
+  return(y)
+}
+
+
+#' Replace NA elements in list with empty vectors
+#' 
+#' Replace NA elements in a list with empty vectors of the specified type.
+#'  Only elements containing a single NA value are replaced, other NA values
+#'  remain as is.
+#' 
+#' @param x List to be modified.
+#' @param type Type of vectors to be used to replace NA elements (numeric,
+#'  character...).
+#' @return List `x` whose NA elements have been replaced with empty vectors.
+#' 
+#' @author Gauthier Magnin
+#' @template function_not_exported
+#' 
+replace_na_in_list = function(x, type = "numeric") {
+  x[is.na(x)] = rep(list(eval(parse(text = paste0(type, "(0)")))),
+                    sum(is.na(x)))
+  return(x)
+}
+
+
+#' Extend character values
+#' 
+#' Extend character values to the left by adding a repeated character until
+#'  they get a given number of characters.
+#' 
+#' @details
+#' `NA` values always remain unchanged.
+#' 
+#' @param x Character values to extend.
+#' @param char Character to use to extend values from `x`.
+#' @param nb Number of characters each value must have at the end of the
+#'  process.
+#' @return Vector corresponding to `x` in which all values have the same number
+#'  of characters.
+#' 
+#' @author Gauthier Magnin
+#' @template function_not_exported
+#' 
+extend_left = function(x, char, nb = max(nchar(x))) {
+  x[!is.na(x)] = gsub(" ", char, sprintf(paste0("%", nb, "s"), x[!is.na(x)]))
+  return(x)
+}
+
+
 #' Convert data type
 #' 
 #' Change the type of a vector.

@@ -22,7 +22,8 @@ Depends: R (>= 3.5.0)
 Suggests:
     stats,
     testthat (>= 3.0.0),
-    tools
+    tools,
+    usethis
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
