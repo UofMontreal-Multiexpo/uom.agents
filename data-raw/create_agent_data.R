@@ -9,6 +9,7 @@
 ##  
 ##  - databases.csv
 ##  - fractions_to_be_replaced.csv
+##  - missing_db_specific_id.csv
 ##  - organizations_to_be_replaced.csv
 ##  
 ##  - utility_functions.R
@@ -69,12 +70,18 @@ organization_changes = turn_2c_into_vec(read.csv(data_path("organizations_to_be_
                                                  colClasses = "character",
                                                  encoding = "UTF-8"))
 
+# Loading additional data
+missing_specific_ids = turn_2c_into_vec(read.csv(data_path("missing_db_specific_id.csv"),
+                                                 colClasses = "character",
+                                                 encoding = "UTF-8"))
+
 
 
 #### 1. Formatting and correction of the data ####
 
 # Agent data
 agent_data = format_and_correct(agent_data, rename = TRUE,
+                                specific_ids = missing_specific_ids,
                                 fr_substances = fr_substances,
                                 organizations = organization_changes,
                                 fractions = fraction_changes)

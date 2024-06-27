@@ -10,6 +10,10 @@
 #' 
 #' @param data Data to format and correct.
 #' @param rename Logical indicating whether to rename and reorder columns.
+#' @param specific_ids Named character vector containing database specific
+#'  identifiers to add. Vector names are the associated original identifiers.
+#'  Vector values are database specific identifiers.
+#'  If `NULL`, no missing database specific identifiers will be added.
 #' @param fr_substances Named character vector of the French classification of
 #'  substances. Vector names are CASD substance identifiers. Vector values are
 #'  MiXie-FR names.
@@ -25,11 +29,12 @@
 #' @author Gauthier Magnin
 #' @template function_not_exported
 #' 
-format_and_correct = function(data, rename = TRUE, fr_substances = NULL,
+format_and_correct = function(data, rename = TRUE,
+                              specific_ids = NULL, fr_substances = NULL,
                               organizations = NULL, fractions = NULL) {
   
   # Apply corrections
-  data$main  = correct_main(data$main, rename)
+  data$main  = correct_main(data$main, rename, specific_ids)
   data$mixie = correct_mixie(data$mixie, rename, fr_substances)
   data$oel   = correct_oel(data$oel, rename, organizations, fractions)
   
@@ -44,12 +49,16 @@ format_and_correct = function(data, rename = TRUE, fr_substances = NULL,
 #' 
 #' @param data Data to format and correct.
 #' @param rename Logical indicating whether to rename and reorder columns.
+#' @param specific_ids Named character vector containing database specific
+#'  identifiers to add. Vector names are the associated original identifiers.
+#'  Vector values are database specific identifiers.
+#'  If `NULL`, no missing database specific identifiers will be added.
 #' @return Corrected data.
 #' 
 #' @author Gauthier Magnin
 #' @template function_not_exported
 #' 
-correct_main = function(data, rename = TRUE) {
+correct_main = function(data, rename = TRUE, specific_ids = NULL) {
   
   # Convert as data frame
   data = as.data.frame(data)
@@ -61,7 +70,9 @@ correct_main = function(data, rename = TRUE) {
   data$database = toupper(data$database)
   
   # Add missing intra-database group IDs
-  data$db_specific_id[is.na(data$db_specific_id)] = data$db_original_id[is.na(data$db_specific_id)]
+  if (!is.null(specific_ids)) {
+    data$db_specific_id[match(names(specific_ids), data$db_original_id)] = specific_ids
+  }
   
   # Convert data types
   data$database = typecast(data$database, "factor")
