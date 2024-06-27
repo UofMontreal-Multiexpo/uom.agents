@@ -1,0 +1,61 @@
+---
+title: "List of datasets and functions - uom.agents"
+author: "Gauthier Magnin"
+date: "Last update: `r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{List of datasets and functions - uom.agents}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{css style, echo=FALSE}
+h1:not(.title) {
+  margin-top: 1.4rem;
+}
+```
+
+
+
+The package help page: [uom.agents](../html/uom.agents-package.html)
+
+
+# Datasets
+
+The main chemical agent dataset: [agents](../html/agents.html)
+
+CASD substance dataset: [CASD_substances](../html/CASD_substances.html)
+
+Other substance datasets:
+
+* [original_substances](../html/original_substances.html)
+* [substance_groups](../html/substance_groups.html)
+
+MiXie datasets:
+
+* [toxicological_classes](../html/toxicological_classes.html)
+* [mixie_qc](../html/mixie_qc.html)
+* [mixie_fr](../html/mixie_fr.html)
+
+The occupational exposure databases: [databases](../html/databases.html)
+
+
+# Functions
+
+Join all datasets into two data frames:
+
+* [join_all_data](../html/join_all_data.html)
+* [join_agent_data](../html/join_agent_data.html)
+* [join_grouping_data](../html/join_grouping_data.html)
+
+Extract specific data:
+
+* [get_database](../html/get_database.html)
+* [get_fr_substance](../html/get_fr_substance.html)
+* [get_toxicity_names](../html/get_toxicity_names.html)
+* [get_qc_toxicity](../html/get_qc_toxicity.html)
+* [get_fr_toxicity](../html/get_fr_toxicity.html)
+
+
+
+---
