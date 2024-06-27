@@ -26,6 +26,7 @@
 ## 
 ## Other output files, resource files for tests:
 ##  - tests/res/agent_data.RDS
+##  - tests/res/groups_by_database.RDS
 ## 
 ## Temporary files:
 ##  - tmp/agent_data_main.csv
@@ -448,6 +449,19 @@ amount_of_data["difference"] = amount_of_data["final"] - amount_of_data["initial
 # Export data to use for comparisons when testing functions
 test_res_dir  = "./tests/res/"
 test_res_path = function(x) paste0(test_res_dir, x)
+
+# Data based on the overall list of data frames agent_data
+saveRDS(
+  # Groups for each origin database
+  stats::setNames(
+    lapply(rownames(databases), function(database_id) {
+      return(unique(agent_data$main$group_id[agent_data$main$database == database_id]))
+    }),
+    rownames(databases)
+  ),
+  file = test_res_path("groups_by_database.RDS"),
+  compress = "xz"
+)
 
 # Overall list of data frames containing agent data
 saveRDS(agent_data, test_res_path("agent_data.RDS"), compress = "xz")

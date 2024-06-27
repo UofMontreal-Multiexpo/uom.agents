@@ -19,13 +19,14 @@ License: Undefined
 URL: https://github.com/UofMontreal-Multiexpo/uom.agents
 BugReports: https://github.com/UofMontreal-Multiexpo/uom.agents/issues
 Depends: R (>= 3.5.0)
+Imports:
+    stats
 Suggests:
     flextable,
     kableExtra,
     knitr,
     magrittr,
     rsvg,
-    stats,
     testthat (>= 3.0.0),
     tools,
     usethis,
