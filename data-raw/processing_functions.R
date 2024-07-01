@@ -10,6 +10,8 @@
 #' 
 #' @param data Data to format and correct.
 #' @param rename Logical indicating whether to rename and reorder columns.
+#' @param remove `TRUE` or `FALSE` whether to remove from the other data frames
+#'  data relating to agents that do not exist in the main data frame.
 #' @param specific_ids Named character vector containing database specific
 #'  identifiers to add. Vector names are the associated original identifiers.
 #'  Vector values are database specific identifiers.
@@ -29,14 +31,24 @@
 #' @author Gauthier Magnin
 #' @template function_not_exported
 #' 
-format_and_correct = function(data, rename = TRUE,
+format_and_correct = function(data, rename = TRUE, remove = FALSE,
                               specific_ids = NULL, fr_substances = NULL,
                               organizations = NULL, fractions = NULL) {
   
+  # Agents to remove
+  if (remove) {
+    to_remove = setdiff(
+      unique(c(data$mixie$multiexpo_code, data$oel$multiexpo_code)),
+      data$main$multiexpo_code
+    )
+  } else {
+    to_remove = NULL
+  }
+  
   # Apply corrections
   data$main  = correct_main(data$main, rename, specific_ids)
-  data$mixie = correct_mixie(data$mixie, rename, fr_substances)
-  data$oel   = correct_oel(data$oel, rename, organizations, fractions)
+  data$mixie = correct_mixie(data$mixie, rename, to_remove, fr_substances)
+  data$oel   = correct_oel(data$oel, rename, to_remove, organizations, fractions)
   
   return(data)
 }
@@ -107,6 +119,7 @@ correct_main = function(data, rename = TRUE, specific_ids = NULL) {
 #' 
 #' @param data Data to format and correct.
 #' @param rename Logical indicating whether to rename and reorder columns.
+#' @param remove Identifiers of agents to remove.
 #' @param fr_substances Named character vector of the French classification of
 #'  substances. Vector names are CASD substance identifiers. Vector values are
 #'  MiXie-FR names.
@@ -115,10 +128,16 @@ correct_main = function(data, rename = TRUE, specific_ids = NULL) {
 #' @author Gauthier Magnin
 #' @template function_not_exported
 #' 
-correct_mixie = function(data, rename = TRUE, fr_substances = NULL) {
+correct_mixie = function(data, rename = TRUE,
+                         remove = NULL, fr_substances = NULL) {
   
   # Convert as data frame
   data = as.data.frame(data)
+  
+  # Remove agents
+  if (!is.null(remove)) {
+    data = data[!is.element(data$multiexpo_code, remove), ]
+  }
   
   # Correct MiXie-FR names
   if (!is.null(fr_substances)) {
@@ -170,6 +189,7 @@ correct_mixie = function(data, rename = TRUE, fr_substances = NULL) {
 #' 
 #' @param data Data to format and correct.
 #' @param rename Logical indicating whether to rename and reorder columns.
+#' @param remove Identifiers of agents to remove.
 #' @param organizations Named character vector containing organization values to
 #'  change. Vector names are old values. Vector values are new values.
 #'  If `NULL`, no corrections to organization values will be made.
@@ -183,10 +203,15 @@ correct_mixie = function(data, rename = TRUE, fr_substances = NULL) {
 #' @template function_not_exported
 #' 
 correct_oel = function(data, rename = TRUE,
-                       organizations = NULL, fractions = NULL) {
+                       remove = NULL, organizations = NULL, fractions = NULL) {
   
   # Convert as data frame
   data = as.data.frame(data)
+  
+  # Remove agents
+  if (!is.null(remove)) {
+    data = data[!is.element(data$multiexpo_code, remove), ]
+  }
   
   # Correct and homogenize writings about organizations
   if (!is.null(organizations)) {

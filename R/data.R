@@ -13,7 +13,7 @@
 #'  limit is retained and the most relevant substance is considered for
 #'  toxicity.
 #' 
-#' @format Data frame of 329 rows whose names are agent identifiers, and 10
+#' @format Data frame of 328 rows whose names are agent identifiers, and 10
 #'  columns:
 #'  \describe{
 #'    \item{`name`}{*Character*. Name of chemical agent.}

@@ -80,7 +80,7 @@ missing_specific_ids = turn_2c_into_vec(read.csv(data_path("missing_db_specific_
 #### 1. Formatting and correction of the data ####
 
 # Agent data
-agent_data = format_and_correct(agent_data, rename = TRUE,
+agent_data = format_and_correct(agent_data, rename = TRUE, remove = TRUE,
                                 specific_ids = missing_specific_ids,
                                 fr_substances = fr_substances,
                                 organizations = organization_changes,

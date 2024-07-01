@@ -5,7 +5,7 @@
 \alias{agents}
 \title{Chemical agents}
 \format{
-Data frame of 329 rows whose names are agent identifiers, and 10
+Data frame of 328 rows whose names are agent identifiers, and 10
 columns:
 \describe{
 \item{\code{name}}{\emph{Character}. Name of chemical agent.}
