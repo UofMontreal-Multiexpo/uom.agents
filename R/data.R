@@ -188,7 +188,7 @@
 #'  agent identifiers, which can be considered as inter-database substance
 #'  groups.
 #' 
-#' @format Named character vector of 854 elements.
+#' @format Named character vector of 851 elements.
 #' @source Group and agent identifiers were created.
 #' @seealso [`agents`], [`original_substances`].
 #' 

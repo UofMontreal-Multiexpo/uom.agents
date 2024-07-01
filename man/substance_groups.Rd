@@ -5,7 +5,7 @@
 \alias{substance_groups}
 \title{Substance groups}
 \format{
-Named character vector of 854 elements.
+Named character vector of 851 elements.
 }
 \source{
 Group and agent identifiers were created.
