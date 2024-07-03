@@ -295,6 +295,7 @@ for (name in exported_datasets) {
             fileEncoding = "UTF-8")
 }
 
+
 # Temporarily save as CSV the internal datasets
 # as well as the data frames from the overall list (for assessment)
 dir.create(tmp_dir, showWarnings = FALSE)
@@ -309,7 +310,7 @@ agent_data_mixie$toxicity_qc_ids = sapply(agent_data_mixie$toxicity_qc_ids,
                                           function(x) paste0(x, collapse = " | "))
 agent_datasets = c("agent_data_main", "agent_data_mixie", "agent_data_oel")
 
-# Save as CSV
+# Save as CSV temporarily
 for (name in c(internal_datasets, agent_datasets)) {
   
   write.csv(get(name),
