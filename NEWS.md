@@ -1,5 +1,6 @@
-# uom.agents 0.0.0.9000-0 (development version)
+# uom.agents 0.1.0-1 (2024-07-03)
 
+Initial stable release version.
 
 
 ---

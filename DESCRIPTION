@@ -1,8 +1,8 @@
 Package: uom.agents
 Type: Package
 Title: Chemical Agents for Occupational Exposure Databases
-Version: 0.0.0.9000-0
-Date: 2024-05-14
+Version: 0.1.0-1
+Date: 2024-07-03
 Authors@R: c(
     person("Gauthier", "Magnin", role = c("aut", "ctr")),
     person("Jérôme", "Lavoué", email = "jerome.lavoue@umontreal.ca", role = "cre"),
