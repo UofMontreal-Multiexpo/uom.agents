@@ -22,8 +22,8 @@ named \code{agents}) and combine it with the corresponding values from other one
 \details{
 Regarding the dataset \code{agents}, additional columns are the following.
 \describe{
-\item{\code{oel_fr}}{Occupational Exposure Limit used in France corresponding to
-substance identifiers from \code{agents$casd_id_oel}.}
+\item{\code{oel_fr}}{Occupational Exposure Limits used in France corresponding
+to substance identifiers from \code{agents$casd_id_oel}.}
 \item{\code{oel_fr_unit}}{Units in which the OELs from \code{oel_fr} are expressed.
 \itemize{
 \item F: fibres per cubic centimetre.
@@ -31,7 +31,7 @@ substance identifiers from \code{agents$casd_id_oel}.}
 }}
 \item{\code{toxicity_qc}}{Toxiciological classes from MiXie-QC corresponding to
 substances from \code{agents$mixie_qc_substance}.}
-\item{\code{mixie_fr_substance}}{Substance in MiXie-FR corresponding to
+\item{\code{mixie_fr_substance}}{Substances in MiXie-FR corresponding to
 substance identifiers from \code{agents$casd_id_mixie}.}
 \item{\code{toxicity_fr}}{Toxicological classes from MiXie-FR corresponding to
 substances from \code{mixie_fr_substance}.}

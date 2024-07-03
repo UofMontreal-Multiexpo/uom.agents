@@ -10,8 +10,8 @@
 #' @details
 #' Regarding the dataset `agents`, additional columns are the following.
 #' \describe{
-#'   \item{`oel_fr`}{Occupational Exposure Limit used in France corresponding to
-#'         substance identifiers from `agents$casd_id_oel`.}
+#'   \item{`oel_fr`}{Occupational Exposure Limits used in France corresponding
+#'         to substance identifiers from `agents$casd_id_oel`.}
 #'   \item{`oel_fr_unit`}{Units in which the OELs from `oel_fr` are expressed.
 #'         \itemize{
 #'           \item F: fibres per cubic centimetre.
@@ -19,7 +19,7 @@
 #'         }}
 #'   \item{`toxicity_qc`}{Toxiciological classes from MiXie-QC corresponding to
 #'         substances from `agents$mixie_qc_substance`.}
-#'   \item{`mixie_fr_substance`}{Substance in MiXie-FR corresponding to
+#'   \item{`mixie_fr_substance`}{Substances in MiXie-FR corresponding to
 #'         substance identifiers from `agents$casd_id_mixie`.}
 #'   \item{`toxicity_fr`}{Toxicological classes from MiXie-FR corresponding to
 #'         substances from `mixie_fr_substance`.}
