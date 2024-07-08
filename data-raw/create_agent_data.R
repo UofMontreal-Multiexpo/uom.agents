@@ -408,7 +408,9 @@ weight_env["difference"] = weight_env["final"] - weight_env["initial"]
 
 weight_rd = c(
   initial = file.size(data_path("multiexpo_agent_list.RDS")),
-  final   = sum(file.size(list.files("./data/", full.names = TRUE, pattern = "*.RData")))
+  final   = sum(file.size(list.files("./data/", full.names = TRUE, pattern = "*.RData")),
+                file.size("./R/sysdata.rda"),
+                na.rm = TRUE)
 )
 weight_rd["difference"] = weight_rd["final"] - weight_rd["initial"]
 
