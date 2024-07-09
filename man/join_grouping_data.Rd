@@ -19,12 +19,16 @@ the datasets \code{substance_groups} and \code{agents}.
 Regarding the dataset \code{original_substances}, additional columns are the
 following.
 \describe{
+\item{\code{original_id}}{Identifiers of the original substances (row names from
+\code{original_substances}).}
 \item{\code{agent_id}}{Identifiers of the chemical agents (i.e., the
 inter-database groups) corresponding to
 \code{original_substances$group_id} (i.e., the intra-database groups).}
 \item{\code{agent_name}}{Names of the chemical agents corresponding to
 \code{agent_id}.}
 }
+
+Row names are only row numbers and do not represent any specific data.
 }
 \examples{
 ## Create the data frame of grouping data
