@@ -20,7 +20,7 @@ named \code{agents}) and combine it with the corresponding values from other one
 (\code{CASD_substances}, \code{mixie_qc}, \code{mixie_fr} and \code{toxicological_classes}).
 }
 \details{
-Regarding the dataset \code{agents}, additional columns are the following.
+Regarding the dataset \code{\link{agents}}, additional columns are the following.
 \describe{
 \item{\code{oel_fr}}{Occupational Exposure Limits used in France corresponding
 to substance identifiers from \code{agents$casd_id_oel}.}

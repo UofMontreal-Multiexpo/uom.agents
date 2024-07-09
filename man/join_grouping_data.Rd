@@ -16,7 +16,7 @@ Join grouping data into a single data frame. Consider the dataset
 the datasets \code{substance_groups} and \code{agents}.
 }
 \details{
-Regarding the dataset \code{original_substances}, additional columns are the
+Regarding the dataset \code{\link{original_substances}}, additional columns are the
 following.
 \describe{
 \item{\code{original_id}}{Identifiers of the original substances (row names from

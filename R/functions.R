@@ -8,7 +8,7 @@
 #'  (`CASD_substances`, `mixie_qc`, `mixie_fr` and `toxicological_classes`).
 #' 
 #' @details
-#' Regarding the dataset `agents`, additional columns are the following.
+#' Regarding the dataset [`agents`], additional columns are the following.
 #' \describe{
 #'   \item{`oel_fr`}{Occupational Exposure Limits used in France corresponding
 #'         to substance identifiers from `agents$casd_id_oel`.}
@@ -87,7 +87,7 @@ join_agent_data = function(tox_names = TRUE) {
 #'  the datasets `substance_groups` and `agents`.
 #' 
 #' @details
-#' Regarding the dataset `original_substances`, additional columns are the
+#' Regarding the dataset [`original_substances`], additional columns are the
 #'  following.
 #' \describe{
 #'   \item{`original_id`}{Identifiers of the original substances (row names from
