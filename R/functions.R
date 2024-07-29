@@ -150,7 +150,7 @@ join_grouping_data = function() {
 #'   \item{`molecular_weight`}{Molar masses, expressed in grams per mole.}
 #'   \item{`size_fraction`}{Particle size fractions considered.}
 #'   \item{`oel_source`}{Sources of the exposure limits.}
-#'   \item{`oel`}{ Occupational Exposure Limits according to the sources.}
+#'   \item{`oel`}{Occupational Exposure Limits according to the sources.}
 #'   \item{`oel_unit`}{Units in which the OELs are expressed.
 #'         \itemize{
 #'           \item F: fibres per cubic centimetre.

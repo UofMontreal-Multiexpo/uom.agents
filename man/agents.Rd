@@ -59,7 +59,7 @@ from other classifications.
 \details{
 Different CASD substance identifiers may be associated with a single agent
 for exposure limit and toxicity (i.e., \code{casd_id_oel} and \code{casd_id_mixie})
-because chemicals agents may correspond to several CASD substances. Only one
+because chemical agents may correspond to several CASD substances. Only one
 limit is retained and the most relevant substance is considered for
 toxicity.
 }

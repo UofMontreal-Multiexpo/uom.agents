@@ -22,7 +22,7 @@ Agent data (rownames are agent identifiers):
 \item{\code{molecular_weight}}{Molar masses, expressed in grams per mole.}
 \item{\code{size_fraction}}{Particle size fractions considered.}
 \item{\code{oel_source}}{Sources of the exposure limits.}
-\item{\code{oel}}{ Occupational Exposure Limits according to the sources.}
+\item{\code{oel}}{Occupational Exposure Limits according to the sources.}
 \item{\code{oel_unit}}{Units in which the OELs are expressed.
 \itemize{
 \item F: fibres per cubic centimetre.
