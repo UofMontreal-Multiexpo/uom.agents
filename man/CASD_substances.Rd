@@ -8,7 +8,8 @@
 Data frame of 284 rows whose names are CASD substance identifiers,
 and 3 columns:
 \describe{
-\item{\code{oel_fr}}{\emph{Numeric}. Occupational Exposure Limit used in France.}
+\item{\code{oel_fr}}{\emph{Numeric}. Occupational Exposure Limit used in France
+(8h-OEL).}
 \item{\code{oel_fr_unit}}{\emph{Factor}. Unit in which the OEL is expressed.
 \itemize{
 \item F: fibres per cubic centimetre.

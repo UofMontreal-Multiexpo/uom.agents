@@ -5,13 +5,13 @@
 "+","molecular_weight","Molar mass of the agent.","Real","Expressed in grams per mole."
 "+","size_fraction","Particle size fraction considered for the agent.","Enumeration","See [appendix C](#appendix-c)."
 "+","oel_source","Source of the exposure limit.","String","See [appendix D](#appendix-d)."
-"+","oel","Occupational Exposure Limit according to the source.","Real",
+"+","oel","Occupational Exposure Limit according to the source.","Real","8h-OEL."
 "+","oel_unit","Unit in which the OEL is expressed.","Enumeration","See [appendix D](#appendix-d)."
 "+","casd_id_oel","Identifier of the CASD substance considered for the corresponding exposure limit used in France.","String",
 "+","mixie_qc_substance","Name of the substance considered for the corresponding toxicological classes from MiXie-QC.","String","See [appendix E](#appendix-e)."
 "+","casd_id_mixie","Identifier of the CASD substance considered for the corresponding toxicological classes from MiXie-FR.","String",
 "CASD_substances","casd_id","Identifier of a substance from the CASD database.","String",
-"+","oel_fr","Occupational Exposure Limit used in France.","Real",
+"+","oel_fr","Occupational Exposure Limit used in France.","Real","8h-OEL."
 "+","oel_fr_unit","Unit in which the OEL is expressed.","Enumeration","See [appendix D](#appendix-d)."
 "+","mixie_fr_substance","Corresponding substance in MiXie-FR.","String","See [appendix F](#appendix-f)."
 "; ",,,,

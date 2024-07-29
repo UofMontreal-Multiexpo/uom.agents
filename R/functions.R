@@ -11,7 +11,7 @@
 #' Regarding the dataset [`agents`], additional columns are the following.
 #' \describe{
 #'   \item{`oel_fr`}{Occupational Exposure Limits used in France corresponding
-#'         to substance identifiers from `agents$casd_id_oel`.}
+#'         to substance identifiers from `agents$casd_id_oel` (8h-OELs).}
 #'   \item{`oel_fr_unit`}{Units in which the OELs from `oel_fr` are expressed.
 #'         \itemize{
 #'           \item F: fibres per cubic centimetre.
@@ -150,7 +150,8 @@ join_grouping_data = function() {
 #'   \item{`molecular_weight`}{Molar masses, expressed in grams per mole.}
 #'   \item{`size_fraction`}{Particle size fractions considered.}
 #'   \item{`oel_source`}{Sources of the exposure limits.}
-#'   \item{`oel`}{Occupational Exposure Limits according to the sources.}
+#'   \item{`oel`}{Occupational Exposure Limits according to the sources
+#'         (8h-OELs).}
 #'   \item{`oel_unit`}{Units in which the OELs are expressed.
 #'         \itemize{
 #'           \item F: fibres per cubic centimetre.
@@ -158,7 +159,7 @@ join_grouping_data = function() {
 #'         }}
 #'   \item{`casd_id_oel`}{Identifiers of the CASD substances considered for the
 #'         corresponding exposure limits used in France.}
-#'   \item{`oel_fr`}{Occupational Exposure Limits used in France.}
+#'   \item{`oel_fr`}{Occupational Exposure Limits used in France (8h-OELs).}
 #'   \item{`oel_fr_unit`}{Units in which the OELs used in France are expressed.
 #'         \itemize{
 #'           \item F: fibres per cubic centimetre.

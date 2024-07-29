@@ -23,7 +23,7 @@
 #'    \item{`size_fraction`}{*Factor*. Particle size fraction considered.}
 #'    \item{`oel_source`}{*Character*. Source of the exposure limit.}
 #'    \item{`oel`}{*Numeric*. Occupational Exposure Limit according to the
-#'          source.}
+#'          source (8h-OEL).}
 #'    \item{`oel_unit`}{*Factor*. Unit in which the OEL is expressed.
 #'          \itemize{
 #'            \item F: fibres per cubic centimetre.
@@ -76,7 +76,8 @@
 #' @format Data frame of 284 rows whose names are CASD substance identifiers,
 #'  and 3 columns:
 #'  \describe{
-#'    \item{`oel_fr`}{*Numeric*. Occupational Exposure Limit used in France.}
+#'    \item{`oel_fr`}{*Numeric*. Occupational Exposure Limit used in France
+#'          (8h-OEL).}
 #'    \item{`oel_fr_unit`}{*Factor*. Unit in which the OEL is expressed.
 #'          \itemize{
 #'            \item F: fibres per cubic centimetre.

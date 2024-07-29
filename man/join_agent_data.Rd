@@ -23,7 +23,7 @@ named \code{agents}) and combine it with the corresponding values from other one
 Regarding the dataset \code{\link{agents}}, additional columns are the following.
 \describe{
 \item{\code{oel_fr}}{Occupational Exposure Limits used in France corresponding
-to substance identifiers from \code{agents$casd_id_oel}.}
+to substance identifiers from \code{agents$casd_id_oel} (8h-OELs).}
 \item{\code{oel_fr_unit}}{Units in which the OELs from \code{oel_fr} are expressed.
 \itemize{
 \item F: fibres per cubic centimetre.

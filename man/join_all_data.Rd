@@ -22,7 +22,8 @@ Agent data (rownames are agent identifiers):
 \item{\code{molecular_weight}}{Molar masses, expressed in grams per mole.}
 \item{\code{size_fraction}}{Particle size fractions considered.}
 \item{\code{oel_source}}{Sources of the exposure limits.}
-\item{\code{oel}}{Occupational Exposure Limits according to the sources.}
+\item{\code{oel}}{Occupational Exposure Limits according to the sources
+(8h-OELs).}
 \item{\code{oel_unit}}{Units in which the OELs are expressed.
 \itemize{
 \item F: fibres per cubic centimetre.
@@ -30,7 +31,7 @@ Agent data (rownames are agent identifiers):
 }}
 \item{\code{casd_id_oel}}{Identifiers of the CASD substances considered for the
 corresponding exposure limits used in France.}
-\item{\code{oel_fr}}{Occupational Exposure Limits used in France.}
+\item{\code{oel_fr}}{Occupational Exposure Limits used in France (8h-OELs).}
 \item{\code{oel_fr_unit}}{Units in which the OELs used in France are expressed.
 \itemize{
 \item F: fibres per cubic centimetre.

@@ -15,7 +15,7 @@ mole.}
 \item{\code{size_fraction}}{\emph{Factor}. Particle size fraction considered.}
 \item{\code{oel_source}}{\emph{Character}. Source of the exposure limit.}
 \item{\code{oel}}{\emph{Numeric}. Occupational Exposure Limit according to the
-source.}
+source (8h-OEL).}
 \item{\code{oel_unit}}{\emph{Factor}. Unit in which the OEL is expressed.
 \itemize{
 \item F: fibres per cubic centimetre.
