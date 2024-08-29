@@ -171,10 +171,12 @@
 #'          same database.}
 #'  }
 #' @source Substance identifiers were provided
-#'  by the [IRSST](https://www.irsst.qc.ca/en/) (for the LIMS database),
-#'  by the [OSHA](https://www.osha.gov/) (for the USIS database), and
-#'  by the [INRS](http://en.inrs.fr/) (for the CASD database).
-#'  Substance identifiers from the CWED database were created.
+#'  by the [IRSST](https://www.irsst.qc.ca/en/) for the LIMS database and
+#'  by the [INRS](http://en.inrs.fr/) for the CASD database.
+#'  Substance identifiers for the USIS database are part of the results of
+#'  another project: see dataset `USIS_substances` from package
+#'  [uom.usis](https://github.com/UofMontreal-Multiexpo/uom.usis).
+#'  Substance identifiers for the CWED database were created.
 #'  
 #'  Group identifiers were created.
 #' @seealso [`databases`], [`substance_groups`].

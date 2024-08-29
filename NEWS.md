@@ -8,6 +8,7 @@
 * Links to the main associated datasets have been added to the help pages of the functions `join_agent_data` and `join_grouping_data`.
 * The PDF file and the help pages relating to OELs now state that those are 8h-OELs.
 * Internal links in the PDF file now work as expected.
+* The 'Source' section in the help page of the dataset `original_substances` now mentions a dataset from the package `uom.usis`.
 
 
 
