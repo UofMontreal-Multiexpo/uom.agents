@@ -19,8 +19,8 @@ Substance identifiers were provided
 by the \href{https://www.irsst.qc.ca/en/}{IRSST} for the LIMS database and
 by the \href{http://en.inrs.fr/}{INRS} for the CASD database.
 Substance identifiers for the USIS database are part of the results of
-another project: see dataset \code{USIS_substances} from package
-\href{https://github.com/UofMontreal-Multiexpo/uom.usis}{uom.usis}.
+another project: see dataset \code{\link[uom.usis:USIS_substances]{USIS_substances}}
+from package \href{https://github.com/UofMontreal-Multiexpo/uom.usis}{uom.usis}.
 Substance identifiers for the CWED database were created.
 
 Group identifiers were created.

@@ -174,8 +174,8 @@
 #'  by the [IRSST](https://www.irsst.qc.ca/en/) for the LIMS database and
 #'  by the [INRS](http://en.inrs.fr/) for the CASD database.
 #'  Substance identifiers for the USIS database are part of the results of
-#'  another project: see dataset `USIS_substances` from package
-#'  [uom.usis](https://github.com/UofMontreal-Multiexpo/uom.usis).
+#'  another project: see dataset [`USIS_substances`][uom.usis::USIS_substances]
+#'  from package [uom.usis](https://github.com/UofMontreal-Multiexpo/uom.usis).
 #'  Substance identifiers for the CWED database were created.
 #'  
 #'  Group identifiers were created.
