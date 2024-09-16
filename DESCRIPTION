@@ -1,7 +1,7 @@
 Package: uom.agents
 Type: Package
 Title: Chemical Agents for Occupational Exposure Databases
-Version: 1.0.0-1
+Version: 1.0.0.9000-1
 Date: 2024-09-16
 Authors@R: c(
     person("Gauthier", "Magnin", role = c("aut", "ctr")),
