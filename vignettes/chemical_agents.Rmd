@@ -110,15 +110,11 @@ nth_values = function(x, n) {
 
 
 These are data about chemical agents relating to occupational exposure databases: classifications, exposure limit values, toxicological classes and other properties.
-The main classification of chemical agents was created by the University of Montreal. Toxicological classes and their associations with substances were provided by the IRSST (the Quebec's Occupational Health and Safety Research Institute) and the INRS (the French National Research and Safety Institute for the Prevention of Occupational Accidents and Diseases).
+The main classification of chemical agents was created by the University of Montreal; toxicological classes and their associations with substances were provided by the IRSST (the Quebec's Occupational Health and Safety Research Institute) and the INRS (the French National Research and Safety Institute for the Prevention of Occupational Accidents and Diseases).
+The primary objective of these datasets is to make a crosswalk across chemical agent identifications from French, Canadian and United States occupational exposure databases. Original substances are grouped to allow correspondence across databases and because they are deemed similar enough for the study of occupational exposure. Substances from original databases are aggregated into groups within the same database. These groups are aggregated again to form the final chemical agent identifications. This results in an overall classification of chemical agents, which are linked to various properties and related informations.
 
 
-<!-- Empty line to lower the following image -->
-\ 
-<!-- Centering the image vertically within the rest of the page might give a better result -->
-
-```{r schema, fig.cap="Relational schema of chemical agent data.", out.width="100%"}
-# The caption does not appear if option out.width is not given
+```{r schema, fig.cap="Relational schema of chemical agent data.", fig.align="center", out.width="91%"}
 include_svg("chemical_agents/agents_relational_schema")
 ```
 

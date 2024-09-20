@@ -1,5 +1,9 @@
 # uom.agents 1.0.0.9000-1 (development version)
 
+## Documentation
+
+* More information has been added to the descriptive paragraph in the PDF file.
+
 
 
 # uom.agents 1.0.0-1 (2024-09-16)
