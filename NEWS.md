@@ -1,4 +1,4 @@
-# uom.agents 1.0.0.9000-1 (development version)
+# uom.agents 1.0.1-1 (2024-09-27)
 
 ## Documentation
 
